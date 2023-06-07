@@ -1,0 +1,27 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./generated/atipico"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("ATIPICO_URL")
+}
+
+model categorias {
+  idcategoria Int       @id @default(autoincrement())
+  categoria   String?   @db.VarChar(255)
+  fecha       DateTime? @db.Date
+  estado      Boolean?
+}
+
+model menu {
+  idmenu      Int       @id @default(autoincrement())
+  idcategoria Int?
+  nombre      String?   @db.VarChar(255)
+  descripcion String?   @db.VarChar(2000)
+  precio      Float?    @db.Float
+  fecha       DateTime? @db.Date
+  estado      Boolean?
+}
